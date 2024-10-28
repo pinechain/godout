@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://4dri52sblgtf"]
+
+[ext_resource type="Texture2D" uid="uid://d1sobkp5md7mp" path="res://scenes/tile/tile-purple.png" id="1_gfrjy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2lshd"]
+size = Vector2(85, 40)
+
+[node name="Tile" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2lshd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_gfrjy")

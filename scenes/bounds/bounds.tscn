@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://u3xea0qk8m1c"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_skimh"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_kmcr2"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_m7nds"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4ud4d"]
+normal = Vector2(-1, 0)
+
+[node name="Bounds" type="Node2D"]
+
+[node name="bottom" type="StaticBody2D" parent="."]
+position = Vector2(0, 768)
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bottom"]
+shape = SubResource("WorldBoundaryShape2D_skimh")
+
+[node name="top" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="top"]
+shape = SubResource("WorldBoundaryShape2D_kmcr2")
+
+[node name="start" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="start"]
+shape = SubResource("WorldBoundaryShape2D_m7nds")
+
+[node name="end" type="StaticBody2D" parent="."]
+position = Vector2(1366, 0)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="end"]
+shape = SubResource("WorldBoundaryShape2D_4ud4d")
