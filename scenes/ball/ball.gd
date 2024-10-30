@@ -20,9 +20,9 @@ func _physics_process(delta):
 	
 	# Collision detected
 	if collision_info:
-		# var colliding_object = collision_info.get_collider() as Node
-		# if colliding_object.is_in_group("paddle"):
-		# 	_vgl.on_play_requested()
+		var colliding_object = collision_info.get_collider() as Node
+		if colliding_object.is_in_group("tile"):
+			(colliding_object as Tile).destroy()
 		
 		# Bounce
 		velocity = velocity.bounce(collision_info.get_normal())

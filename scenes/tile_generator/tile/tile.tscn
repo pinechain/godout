@@ -1,0 +1,26 @@
+[gd_scene load_steps=11 format=3 uid="uid://4dri52sblgtf"]
+
+[ext_resource type="Texture2D" uid="uid://d1sobkp5md7mp" path="res://scenes/tile_generator/tile/tile-purple.png" id="1_gfrjy"]
+[ext_resource type="Script" path="res://scenes/tile_generator/tile/tile.gd" id="1_kasgp"]
+[ext_resource type="Texture2D" uid="uid://f1r5drav7nem" path="res://scenes/tile_generator/tile/tile-blue.png" id="2_uruqw"]
+[ext_resource type="Texture2D" uid="uid://bl6si82jirs6m" path="res://scenes/tile_generator/tile/tile-cyan.png" id="3_wiyho"]
+[ext_resource type="Texture2D" uid="uid://ibgqtm8x3now" path="res://scenes/tile_generator/tile/tile-green.png" id="4_nq0rp"]
+[ext_resource type="Texture2D" uid="uid://bpq4iw660ascs" path="res://scenes/tile_generator/tile/tile-orange.png" id="5_70obk"]
+[ext_resource type="Texture2D" uid="uid://bm7hswtljove3" path="res://scenes/tile_generator/tile/tile-pink.png" id="6_62jed"]
+[ext_resource type="Texture2D" uid="uid://chi3oudxk46x8" path="res://scenes/tile_generator/tile/tile-yellow.png" id="8_ht77p"]
+[ext_resource type="Texture2D" uid="uid://umusyjj06cth" path="res://scenes/tile_generator/tile/tile-PINK-PINK.png" id="9_sdwp5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2lshd"]
+size = Vector2(85, 40)
+
+[node name="Tile" type="StaticBody2D" groups=["tile"]]
+collision_layer = 8
+script = ExtResource("1_kasgp")
+tile_textures = Array[Texture2D]([ExtResource("2_uruqw"), ExtResource("3_wiyho"), ExtResource("4_nq0rp"), ExtResource("5_70obk"), ExtResource("6_62jed"), ExtResource("1_gfrjy"), ExtResource("8_ht77p"), ExtResource("9_sdwp5")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2lshd")
+
+[node name="TileColor" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = ExtResource("1_gfrjy")
