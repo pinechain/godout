@@ -5,8 +5,12 @@ extends StaticBody2D
 @export var tile_textures: Array[Texture2D]
 
 
-func paint(index: int):
+@onready var tier: int
+
+
+func build(index: int):
 	($TileColor as Sprite2D).texture = tile_textures[index]
+	tier = index + 1
 
 
 func width():
@@ -18,4 +22,5 @@ func height():
 
 
 func destroy():
+	EventBus.on_tile_broken.trigger(tier)
 	queue_free()

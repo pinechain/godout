@@ -6,13 +6,14 @@ https://elgoog.im/breakout/
 - [x] Add a paddle that can be moved left and right via player inputs.
 	- [x] width: 300px
 - [x] Add a ball that will bounce off of the paddle, walls, and ceiling.
-- [ ] Add square game objects (bricks) into the top of the game space.  
+- [x] Add square game objects (bricks) into the top of the game space.  
 	- [x] width: 85px
-    - [ ] (The original game had eight rows of 16 bricks each, though you can change the number of bricks depending on the size of the game space)
-- [ ] Enable the ball to bounce off of the bricks. When the ball bounces, the brick should disappear.
-    - [ ] Breaking a brick should add to the player’s score.
+    - [x] (The original game had eight rows of 16 bricks each, though you can change the number of bricks depending on the size of the game space)
+- [x] Enable the ball to bounce off of the bricks. When the ball bounces, the brick should disappear.
+    - [x] Breaking a brick should add to the player’s score.
     - [ ] The ball’s speed should increase as bricks are broken.
-- [ ] The score should be displayed, as well as a life counter. The player starts with three lives. If the player misses the ball, a life should be subtracted. When all lives are used, the game ends.
+- [x] The score should be displayed. 
+- [ ] The player starts with three lives. If the player misses the ball, a life should be subtracted. When all lives are used, the game ends. The lives should be displayed.
 
 ### Stretch goal:
 

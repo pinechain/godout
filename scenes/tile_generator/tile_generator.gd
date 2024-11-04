@@ -4,7 +4,7 @@ extends Node2D
 @export var tile_reference: PackedScene
 
 
-@onready var _first_spawn := 400
+@export var _first_spawn := 500
 
 
 func _ready():
@@ -21,7 +21,7 @@ func _ready():
 			var pos_x = _determine_tile_pos_x(tile_width, column, row)
 			var tile = tile_reference.instantiate() as Tile
 			tile.position = Vector2(pos_x, pos_y)
-			tile.paint(row)
+			tile.build(row)
 			add_child(tile)	
 
 

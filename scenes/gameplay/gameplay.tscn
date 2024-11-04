@@ -1,11 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://cnkbeu86wcc8n"]
+[gd_scene load_steps=7 format=3 uid="uid://cnkbeu86wcc8n"]
 
+[ext_resource type="PackedScene" uid="uid://din1lxrdwyvqs" path="res://scenes/hud/hud.tscn" id="1_8kmyl"]
 [ext_resource type="PackedScene" uid="uid://u3xea0qk8m1c" path="res://scenes/bounds/bounds.tscn" id="1_61834"]
+[ext_resource type="PackedScene" uid="uid://bia83mk6r6kpi" path="res://scenes/arbiter/arbiter.tscn" id="1_rb23a"]
 [ext_resource type="PackedScene" uid="uid://cbyvmreyyvmgw" path="res://scenes/tile_generator/tile_generator.tscn" id="1_uh548"]
 [ext_resource type="PackedScene" uid="uid://bi5u767xtfqu6" path="res://scenes/ball/ball.tscn" id="2_braqf"]
 [ext_resource type="PackedScene" uid="uid://dhwf7hisc80mh" path="res://scenes/paddle/paddle.tscn" id="3_j8lyc"]
 
 [node name="Gameplay" type="Node2D"]
+
+[node name="Control" parent="." instance=ExtResource("1_8kmyl")]
+offset_left = 683.0
+offset_right = 683.0
+
+[node name="Arbiter" parent="." instance=ExtResource("1_rb23a")]
 
 [node name="TileGenerator" parent="." instance=ExtResource("1_uh548")]
 

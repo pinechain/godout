@@ -5,13 +5,15 @@ extends CharacterBody2D
 @export var spawn_variation := 45
 
 
-var is_alive := false
+var _is_alive := false
+var _current_tier: int
+var _original_velocity: Vector2
 
 
 func _process(_delta):
-	if (Input.is_action_pressed("start") and not is_alive):
+	if (Input.is_action_pressed("start") and not _is_alive):
 		_spawn()
-		is_alive = true
+		_is_alive = true
 
 
 func _physics_process(delta):
@@ -22,7 +24,8 @@ func _physics_process(delta):
 	if collision_info:
 		var colliding_object = collision_info.get_collider() as Node
 		if colliding_object.is_in_group("tile"):
-			(colliding_object as Tile).destroy()
+			var tile = colliding_object as Tile
+			tile.destroy()
 		
 		# Bounce
 		velocity = velocity.bounce(collision_info.get_normal())
