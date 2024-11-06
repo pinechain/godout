@@ -9,17 +9,17 @@
 
 [node name="Gameplay" type="Node2D"]
 
-[node name="Control" parent="." instance=ExtResource("1_8kmyl")]
-offset_left = 683.0
-offset_right = 683.0
-
 [node name="Arbiter" parent="." instance=ExtResource("1_rb23a")]
 
 [node name="TileGenerator" parent="." instance=ExtResource("1_uh548")]
 
 [node name="Bounds" parent="." instance=ExtResource("1_61834")]
 
+[node name="Paddle" parent="." instance=ExtResource("3_j8lyc")]
+
 [node name="Ball" parent="." instance=ExtResource("2_braqf")]
 visible = false
+position = Vector2(756, 679)
+speed_step = 25.0
 
-[node name="Paddle" parent="." instance=ExtResource("3_j8lyc")]
+[node name="Hud" parent="." instance=ExtResource("1_8kmyl")]

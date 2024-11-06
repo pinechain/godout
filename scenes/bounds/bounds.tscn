@@ -13,7 +13,7 @@ normal = Vector2(-1, 0)
 
 [node name="Bounds" type="Node2D"]
 
-[node name="bottom" type="StaticBody2D" parent="."]
+[node name="bottom" type="StaticBody2D" parent="." groups=["death"]]
 position = Vector2(0, 768)
 collision_layer = 16
 
