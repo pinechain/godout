@@ -8,6 +8,7 @@ var _current_lives := Globals.MAX_LIVES
 func _ready():
 	EventBus.on_tile_broken.sub(_increase_score)
 	EventBus.on_ball_lost.sub(_lose_life)
+	EventBus.on_game_restarted.sub(_reset)
 
 
 func _increase_score(added_score: int):
@@ -17,6 +18,13 @@ func _increase_score(added_score: int):
 
 func _lose_life():
 	_current_lives -= 1
-	EventBus.on_lives_changed.trigger(_current_lives)
 	if _current_lives == 0:
-		EventBus.on_game_lost.trigger()
+		EventBus.on_game_over.trigger(false)
+	else:
+		EventBus.on_lives_changed.trigger(_current_lives)
+		EventBus.on_respawn_requested.trigger()
+
+
+func _reset():
+	_score = 0
+	_current_lives = Globals.MAX_LIVES

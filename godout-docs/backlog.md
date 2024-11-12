@@ -15,12 +15,12 @@ https://elgoog.im/breakout/
 - [x] The score should be displayed. 
 - [x] The player starts with three lives. 
 - [x] If the player misses the ball, a life should be subtracted. 
-- [ ] When all lives are used, the game ends. 
+- [x] When all lives are used, the game ends. 
 - [x] The lives should be displayed.
 
 ### Stretch goal:
 
 - [ ] Save the high score between play sessions and display it alongside the player score.
-- [ ] Add different colors to the bricks in the rows. (The original game was black-and-white, but had a colored film on the screen, simulating colored rows of bricks)
+- [x] Add different colors to the bricks in the rows. (The original game was black-and-white, but had a colored film on the screen, simulating colored rows of bricks)
 - [ ] The paddle should get narrower once the ball reaches the ceiling.
 - [ ] Adjust bounce angle when the ball is bouncing on the paddle

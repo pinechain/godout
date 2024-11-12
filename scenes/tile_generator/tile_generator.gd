@@ -8,6 +8,13 @@ extends Node2D
 
 
 func _ready():
+	EventBus.on_game_restarted.sub(_spawn)
+	EventBus.on_game_over.sub(_destroy_everything)
+	EventBus.on_tile_broken.sub(_analyze_victory)
+	_spawn()
+
+
+func _spawn():
 	# THIS HERE IS A GAMBIARRA SO THAT I DONT NEED TO CALCULATE EVERYTHING EVERYTIME
 	# AND I AM PROUD OF IT
 	var ref = tile_reference.instantiate() as Tile
@@ -15,8 +22,8 @@ func _ready():
 	var tile_width = ref.width()
 	ref.queue_free()
 
-	for row in range(0, 8):
-		for column in range(0, 16):
+	for row in range(0, Globals.MAX_ROWS):
+		for column in range(0, Globals.MAX_COLUMNS):
 			var pos_y = _determine_tile_pos_y(tile_height, row)
 			var pos_x = _determine_tile_pos_x(tile_width, column, row)
 			var tile = tile_reference.instantiate() as Tile
@@ -38,3 +45,13 @@ func _determine_tile_pos_x(width: int, column: int, row: int):
 	else:
 		return x_offset - width/2
 	
+
+func _analyze_victory(_tier: int):
+	if get_child_count() == 0:
+		EventBus.on_game_over.trigger(true)
+
+
+func _destroy_everything(is_victory: bool):
+	if not is_victory:
+		for child in get_children():
+			child.queue_free()

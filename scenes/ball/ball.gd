@@ -6,33 +6,46 @@ extends CharacterBody2D
 @export var spawn_variation := 45
 
 
-var _is_alive := false
 var _current_tier: int
 
 
-func _process(_delta):
-	if (Input.is_action_pressed("start") and not _is_alive):
-		_spawn()
-		_is_alive = true
+func _ready():
+	EventBus.on_respawn_requested.sub(_schedule_spawn)
+	EventBus.on_game_restarted.sub(_reset)
+	_schedule_spawn()
 
 
 func _physics_process(delta):
-	# Try to detect collision during movement
 	var collision_info = move_and_collide(velocity * delta)
-	
-	# Collision detected
 	if collision_info:
-		var colliding_object = collision_info.get_collider() as Node
-		if colliding_object.is_in_group("tile"):
-			_process_tile_collision(colliding_object as Tile)
-		if colliding_object.is_in_group("death"):
-			EventBus.on_ball_lost.trigger()
-		
-		# Bounce
-		velocity = velocity.bounce(collision_info.get_normal())
+		_process_collision(collision_info)
 
 
-func _process_tile_collision(tile: Tile):
+func _process_collision(collision_info: KinematicCollision2D):
+	var colliding_object = collision_info.get_collider() as Node
+	if colliding_object.is_in_group("tile"):
+		_score(colliding_object as Tile)
+	if colliding_object.is_in_group("death"):
+		_die()
+	
+	_bounce(collision_info)
+
+
+func _score(tile: Tile):
+	_change_velocity(tile)
+	_destroy_tile(tile)
+
+
+func _die():
+	EventBus.on_ball_lost.trigger()
+	_clear()
+
+
+func _bounce(collision_info: KinematicCollision2D):
+	velocity = velocity.bounce(collision_info.get_normal())
+
+
+func _change_velocity(tile: Tile):
 	if tile.tier > _current_tier:
 		_current_tier = tile.tier
 		if velocity.y < 0:
@@ -43,6 +56,9 @@ func _process_tile_collision(tile: Tile):
 			velocity.x -= speed_step
 		if velocity.x > 0:
 			velocity.x += speed_step
+
+
+func _destroy_tile(tile: Tile):
 	tile.destroy()
 
 
@@ -57,14 +73,22 @@ func _spawn():
 	var angle = randf_range(initial, final)
 
 	# Determine movement direction
-	velocity.y = -speed
+	velocity.y = -speed - (_current_tier * speed_step)
 	velocity = velocity.rotated(angle)
 
 	# Enable visibility
 	visible = true
 
 
-# func clear():
-# 	# Teleport outside of screen
-# 	velocity = Vector2.ZERO
-# 	global_position = Vector2(-50, -50)
+func _clear():
+	velocity = Vector2.ZERO
+	visible = false
+
+
+func _schedule_spawn():
+	get_tree().create_timer(Globals.RESPAWN_TIME).timeout.connect(_spawn)
+
+
+func _reset():
+	_current_tier = 0
+	_schedule_spawn()
