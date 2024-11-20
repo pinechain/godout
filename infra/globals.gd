@@ -17,3 +17,8 @@ const GAME_LOST = "Defeat!"
 
 const MAX_ROWS = 8
 const MAX_COLUMNS = 16
+
+
+const SAVE_TAG = "percy"
+const SAVE_NODE = "node"
+const SAVE_HISCORE = "hiscore"

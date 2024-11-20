@@ -5,8 +5,10 @@ func _ready():
 	EventBus.on_score_changed.sub(_update_score)
 	EventBus.on_lives_changed.sub(_update_lives)
 	EventBus.on_game_over.sub(_on_game_over)
+	EventBus.on_save_finished.sub(_exit)
+	EventBus.on_hiscore_updated.sub(_update_hiscore)
 	
-	($GameOver/Exit as Button).pressed.connect(_exit)
+	($GameOver/Exit as Button).pressed.connect(_start_exit)
 	($GameOver/Restart as Button).pressed.connect(_reset)
 
 	($Gameplay/Lives as Label).text = str(Globals.MAX_LIVES)
@@ -19,6 +21,10 @@ func _update_score(new_score: int):
 
 func _update_lives(new_lives: int):
 	($Gameplay/Lives as Label).text = str(new_lives)
+
+
+func _update_hiscore(new_hiscore: int):
+	($GameOver/Hiscore as Label).text = str(new_hiscore)
 
 
 func _on_game_over(is_victory: bool):
@@ -39,6 +45,10 @@ func _show(node: Node):
 			child.visible = true
 		else:
 			child.visible = false
+
+
+func _start_exit():
+	EventBus.on_game_exited.trigger()
 
 
 func _exit():

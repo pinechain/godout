@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://scenes/arbiter/arbiter.gd" id="1_sstgi"]
 
-[node name="Arbiter" type="Node2D"]
+[node name="Arbiter" type="Node2D" groups=["percy"]]
 script = ExtResource("1_sstgi")

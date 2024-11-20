@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dy5losqpkuste"]
+
+[ext_resource type="Script" path="res://scenes/percy/percy.gd" id="1_4wbxh"]
+
+[node name="Percy" type="Node2D"]
+script = ExtResource("1_4wbxh")
